@@ -14,7 +14,7 @@ class RegisterScreen extends StatelessWidget {
               height: 330,
               width: double.infinity,
               child: Image.asset(
-                "assets/Signin.png", // use your signup image
+                "assets/Signin.png",
                 fit: BoxFit.cover,
               ),
             ),
@@ -80,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
                         backgroundColor: Colors.black,
                       ),
                       onPressed: () {
-                        // navigate after register
+                        
                       },
                       child: Text(
                         "Create Account",
