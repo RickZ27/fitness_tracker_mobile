@@ -22,3 +22,16 @@ flutter:
     - assets/logo.png
     - assets/on1.png
     - assets/Signin.png
+    - assets/fonts/
+  fonts:
+    - family: OpenSans-Bold
+      fonts: 
+        - asset: assets/fonts/openSans-Bold.ttf
+
+    - family: OpenSans-Regular
+      fonts: 
+        - asset: assets/fonts/openSans-Regular.ttf
+   
+    - family: OpenSans-Italic
+      fonts: 
+        - asset: assets/fonts/openSans-Italic.ttf
