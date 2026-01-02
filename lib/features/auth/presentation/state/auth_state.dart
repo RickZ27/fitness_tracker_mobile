@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:smartnews/features/auth/domain/entities/auth_entity.dart';
+import 'package:fitness_tracker/features/auth/domain/entities/auth_entity.dart';
 
 enum AuthStatus {
   initial,
