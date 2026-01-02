@@ -1,29 +1,27 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fitness_tracker/core/usecases/app_usecases.dart';
+import 'package:fitness_tracker/features/auth/data/repositories/auth_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smartnews/core/error/failures.dart';
-import 'package:smartnews/core/usecases/app_usecases.dart';
-import 'package:smartnews/features/auth/data/repositories/auth_repository.dart';
-import 'package:smartnews/features/auth/domain/entities/auth_entity.dart';
-import 'package:smartnews/features/auth/domain/repositories/auth_repository.dart';
+import 'package:fitness_tracker/core/error/failures.dart';
+import 'package:fitness_tracker/features/auth/domain/entities/auth_entity.dart';
+import 'package:fitness_tracker/features/auth/domain/repositories/auth_repository.dart';
 
 class RegisterParams extends Equatable {
   final String fullName;
   final String email;
   final String username;
   final String password;
-  final String? phoneNumber;
 
   const RegisterParams({
     required this.fullName,
     required this.email,
     required this.username,
     required this.password,
-    this.phoneNumber,
   });
 
   @override
-  List<Object?> get props => [fullName, email, username, password, phoneNumber];
+  List<Object?> get props => [fullName, email, username, password];
 }
 
 // Create Provider
@@ -44,7 +42,7 @@ class RegisterUsecase implements UsecaseWithParms<bool, RegisterParams> {
       fullName: params.fullName,
       email: params.email,
       password: params.password,
-      phoneNumber: params.phoneNumber,
+      username: params.username,
     );
 
     return _authRepository.register(authEntity);
