@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:fitness_tracker/core/error/failures.dart';
+import 'package:fitness_tracker/core/usecases/app_usecases.dart';
+import 'package:fitness_tracker/features/auth/data/repositories/auth_repository.dart';
+import 'package:fitness_tracker/features/auth/domain/entities/auth_entity.dart';
+import 'package:fitness_tracker/features/auth/domain/repositories/auth_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smartnews/core/error/failures.dart';
-import 'package:smartnews/core/usecases/app_usecases.dart';
-import 'package:smartnews/features/auth/data/repositories/auth_repository.dart';
-import 'package:smartnews/features/auth/domain/entities/auth_entity.dart';
-import 'package:smartnews/features/auth/domain/repositories/auth_repository.dart';
+
 
 // Create Provider
 final getCurrentUserUsecaseProvider = Provider<GetCurrentUserUsecase>((ref) {
