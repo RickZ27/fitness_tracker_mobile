@@ -1,4 +1,5 @@
-import 'package:smartnews/features/auth/data/models/auth_hive_model.dart';
+
+import 'package:fitness_tracker/features/auth/data/models/auth_hive_model.dart';
 
 abstract interface class IAuthDataSource {
   Future<AuthHiveModel> register(AuthHiveModel user);

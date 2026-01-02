@@ -1,8 +1,9 @@
+import 'package:fitness_tracker/core/constants/hive_table_constant.dart';
+import 'package:fitness_tracker/features/auth/data/models/auth_hive_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:smartnews/core/constants/hive_table_constant.dart';
-import 'package:smartnews/features/auth/data/models/auth_hive_model.dart';
+
 
 final hiveServiceProvider = Provider<HiveService>((ref) {
   return HiveService();
