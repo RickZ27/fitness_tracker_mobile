@@ -1,6 +1,6 @@
+import 'package:fitness_tracker/features/dashboard/presentation/pages/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'register_screen.dart';
-import 'dashboard_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

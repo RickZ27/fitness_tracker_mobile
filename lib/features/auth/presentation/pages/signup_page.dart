@@ -1,7 +1,8 @@
+import 'package:fitness_tracker/features/auth/presentation/state/auth_state.dart';
+import 'package:fitness_tracker/features/auth/presentation/view_model/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smartnews/features/auth/presentation/state/auth_state.dart';
-import 'package:smartnews/features/auth/presentation/view_model/auth_viewmodel.dart';
+
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/theme_extensions.dart';
@@ -64,7 +65,6 @@ class _SignupPageState extends ConsumerState<SignupPage> {
             email: _emailController.text.trim(),
             username: _emailController.text.trim().split('@').first,
             password: _passwordController.text,
-            phoneNumber: '$_selectedCountryCode${_phoneController.text.trim()}',
           );
     }
   }
