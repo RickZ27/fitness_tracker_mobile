@@ -1,4 +1,4 @@
-import 'package:fitness_tracker/features/auth/presentation/pages/login_screen.dart';
+import 'package:fitness_tracker/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 
