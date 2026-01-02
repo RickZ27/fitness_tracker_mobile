@@ -1,5 +1,6 @@
-import 'package:fitness_tracker/screens/login_screen.dart';
+import 'package:fitness_tracker/features/auth/presentation/pages/login_screen.dart';
 import 'package:flutter/material.dart';
+
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
