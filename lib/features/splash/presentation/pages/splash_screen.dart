@@ -1,6 +1,7 @@
-import 'package:fitness_tracker/screens/onboarding_screen.dart';
+import 'package:fitness_tracker/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
