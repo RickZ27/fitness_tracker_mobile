@@ -1,7 +1,8 @@
+import 'package:fitness_tracker/core/services/hive/hive_service.dart';
+import 'package:fitness_tracker/features/auth/data/datasources/auth_datasource.dart';
+import 'package:fitness_tracker/features/auth/data/models/auth_hive_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smartnews/core/services/hive/hive_service.dart';
-import 'package:smartnews/features/auth/data/datasources/auth_datasource.dart';
-import 'package:smartnews/features/auth/data/models/auth_hive_model.dart';
+
 
 final authLocalDatasourceProvider = Provider<IAuthDataSource>((ref) {
   final hiveService = ref.watch(hiveServiceProvider);

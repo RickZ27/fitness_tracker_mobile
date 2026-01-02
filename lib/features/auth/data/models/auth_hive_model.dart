@@ -1,6 +1,7 @@
+import 'package:fitness_tracker/core/constants/hive_table_constant.dart';
+import 'package:fitness_tracker/features/auth/domain/entities/auth_entity.dart';
 import 'package:hive/hive.dart';
-import 'package:smartnews/core/constants/hive_table_constant.dart';
-import 'package:smartnews/features/auth/domain/entities/auth_entity.dart';
+
 
 import 'package:uuid/uuid.dart';
 
@@ -19,7 +20,8 @@ class AuthHiveModel extends HiveObject {
   final String email;
 
   @HiveField(3)
-  final String? phoneNumber;
+  final String username;
+
 
   @HiveField(4)
   final String? password;
@@ -31,7 +33,7 @@ class AuthHiveModel extends HiveObject {
     String? authId,
     required this.fullName,
     required this.email,
-    this.phoneNumber,
+    required this.username,
     this.password,
     this.profilePicture,
   }) : authId = Uuid().v4();
@@ -42,7 +44,7 @@ class AuthHiveModel extends HiveObject {
       authId: authId,
       fullName: fullName,
       email: email,
-      phoneNumber: phoneNumber,
+      username: username,
       password: password,
       profilePicture: profilePicture,
     );
@@ -54,7 +56,7 @@ class AuthHiveModel extends HiveObject {
       authId: entity.authId,
       fullName: entity.fullName,
       email: entity.email,
-      phoneNumber: entity.phoneNumber,
+      username: entity.username,
       password: entity.password,
       profilePicture: entity.profilePicture,
     );

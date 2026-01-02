@@ -1,7 +1,7 @@
-import 'package:fitness_tracker/screens/navbarscreen/bmi_screen.dart';
-import 'package:fitness_tracker/screens/navbarscreen/home_screen.dart';
-import 'package:fitness_tracker/screens/navbarscreen/profile_screen.dart';
-import 'package:fitness_tracker/screens/navbarscreen/timer_screen.dart';
+import 'package:fitness_tracker/features/dashboard/presentation/pages/navbarscreen/home_screen.dart';
+import 'package:fitness_tracker/features/dashboard/presentation/pages/navbarscreen/bmi_screen.dart';
+import 'package:fitness_tracker/features/dashboard/presentation/pages/navbarscreen/timer_screen.dart';
+import 'package:fitness_tracker/features/dashboard/presentation/pages/navbarscreen/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 
