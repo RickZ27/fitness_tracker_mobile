@@ -1,16 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:fitness_tracker/core/error/failures.dart';
 import 'package:fitness_tracker/features/auth/data/datasources/auth_datasource.dart';
-import 'package:fitness_tracker/features/auth/data/datasources/local/auth_local_datasource.dart';
+import 'package:fitness_tracker/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:fitness_tracker/features/auth/data/models/auth_hive_model.dart';
 import 'package:fitness_tracker/features/auth/domain/entities/auth_entity.dart';
 import 'package:fitness_tracker/features/auth/domain/repositories/auth_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-// Create provider
 final authRepositoryProvider = Provider<IAuthRepository>((ref) {
-  final authDatasource = ref.read(authLocalDatasourceProvider);
+  final authDatasource = ref.read(authRemoteDatasourceProvider);
   return AuthRepository(authDatasource: authDatasource);
 });
 
@@ -23,15 +21,8 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<Either<Failure, bool>> register(AuthEntity user) async {
     try {
-      // Check if email already exists
-      final existingUser = await _authDataSource.getUserByEmail(user.email);
-      if (existingUser != null) {
-        return const Left(
-          LocalDatabaseFailure(message: "Email already registered"),
-        );
-      }
-
       final authModel = AuthHiveModel(
+        authId: '', // Remote creates this
         fullName: user.fullName,
         email: user.email,
         username: user.username,
@@ -41,26 +32,21 @@ class AuthRepository implements IAuthRepository {
       await _authDataSource.register(authModel);
       return const Right(true);
     } catch (e) {
-      return Left(LocalDatabaseFailure(message: e.toString()));
+      return Left(ApiFailure(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, AuthEntity>> login(
-    String email,
-    String password,
-  ) async {
+  Future<Either<Failure, AuthEntity>> login(String email, String password) async {
     try {
       final model = await _authDataSource.login(email, password);
       if (model != null) {
         final entity = model.toEntity();
         return Right(entity);
       }
-      return const Left(
-        LocalDatabaseFailure(message: "Invalid email or password"),
-      );
+      return const Left(ApiFailure(message: "Invalid email or password"));
     } catch (e) {
-      return Left(LocalDatabaseFailure(message: e.toString()));
+      return Left(ApiFailure(message: e.toString()));
     }
   }
 
@@ -72,9 +58,9 @@ class AuthRepository implements IAuthRepository {
         final entity = model.toEntity();
         return Right(entity);
       }
-      return const Left(LocalDatabaseFailure(message: "No user logged in"));
+      return const Left(ApiFailure(message: "No user logged in"));
     } catch (e) {
-      return Left(LocalDatabaseFailure(message: e.toString()));
+      return Left(ApiFailure(message: e.toString()));
     }
   }
 
@@ -85,9 +71,9 @@ class AuthRepository implements IAuthRepository {
       if (result) {
         return const Right(true);
       }
-      return const Left(LocalDatabaseFailure(message: "Failed to logout"));
+      return const Left(ApiFailure(message: "Failed to logout"));
     } catch (e) {
-      return Left(LocalDatabaseFailure(message: e.toString()));
+      return Left(ApiFailure(message: e.toString()));
     }
   }
 }
