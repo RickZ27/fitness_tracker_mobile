@@ -1,9 +1,8 @@
-import 'package:fitness_tracker/features/dashboard/presentation/pages/navbarscreen/home_screen.dart';
-import 'package:fitness_tracker/features/dashboard/presentation/pages/navbarscreen/bmi_screen.dart';
-import 'package:fitness_tracker/features/dashboard/presentation/pages/navbarscreen/timer_screen.dart';
-import 'package:fitness_tracker/features/dashboard/presentation/pages/navbarscreen/profile_screen.dart';
+import 'package:fitness_tracker/features/dashboard/presentation/pages/home_overview_page.dart';
+import 'package:fitness_tracker/features/goal/presentation/pages/goal_page.dart';
+import 'package:fitness_tracker/features/profile/presentation/pages/profile_page.dart';
+import 'package:fitness_tracker/features/workout/presentation/pages/workout_page.dart';
 import 'package:flutter/material.dart';
-
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -15,40 +14,46 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    HomeScreen(),
-    BmiScreen(),
-    TimerScreen(),
-    ProfileScreen(),
+  final List<Widget> _screens = const [
+    HomeOverviewPage(),
+    WorkoutPage(),
+    GoalPage(),
+    ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex],
-
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _screens,
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.analytics_outlined),
+            selectedIcon: Icon(Icons.analytics),
+            label: "Dashboard",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monitor_weight),
-            label: "BMI",
+          NavigationDestination(
+            icon: Icon(Icons.fitness_center_outlined),
+            selectedIcon: Icon(Icons.fitness_center),
+            label: "Workouts",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.timer),
-            label: "Timer",
+          NavigationDestination(
+            icon: Icon(Icons.flag_outlined),
+            selectedIcon: Icon(Icons.flag),
+            label: "Goals",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
             label: "Profile",
           ),
         ],

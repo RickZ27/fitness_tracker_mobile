@@ -64,12 +64,31 @@ class ApiClient {
 
   Dio get dio => _dio;
 
+  dynamic _stripNulls(dynamic data) {
+    if (data is Map) {
+      final Map<String, dynamic> clean = {};
+      data.forEach((key, value) {
+        if (value != null) {
+          clean[key.toString()] = _stripNulls(value);
+        }
+      });
+      return clean;
+    } else if (data is List) {
+      return data.where((e) => e != null).map((e) => _stripNulls(e)).toList();
+    }
+    return data;
+  }
+
   Future<Response> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
-    return _dio.get(path, queryParameters: queryParameters, options: options);
+    return _dio.get(
+      path, 
+      queryParameters: queryParameters != null ? _stripNulls(queryParameters) : null, 
+      options: options,
+    );
   }
 
   Future<Response> post(
@@ -80,8 +99,8 @@ class ApiClient {
   }) async {
     return _dio.post(
       path,
-      data: data,
-      queryParameters: queryParameters,
+      data: data != null ? _stripNulls(data) : null,
+      queryParameters: queryParameters != null ? _stripNulls(queryParameters) : null,
       options: options,
     );
   }
@@ -94,8 +113,22 @@ class ApiClient {
   }) async {
     return _dio.put(
       path,
-      data: data,
-      queryParameters: queryParameters,
+      data: data != null ? _stripNulls(data) : null,
+      queryParameters: queryParameters != null ? _stripNulls(queryParameters) : null,
+      options: options,
+    );
+  }
+
+  Future<Response> patch(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    return _dio.patch(
+      path,
+      data: data != null ? _stripNulls(data) : null,
+      queryParameters: queryParameters != null ? _stripNulls(queryParameters) : null,
       options: options,
     );
   }
@@ -108,8 +141,8 @@ class ApiClient {
   }) async {
     return _dio.delete(
       path,
-      data: data,
-      queryParameters: queryParameters,
+      data: data != null ? _stripNulls(data) : null,
+      queryParameters: queryParameters != null ? _stripNulls(queryParameters) : null,
       options: options,
     );
   }
